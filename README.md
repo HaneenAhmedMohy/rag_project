@@ -10,7 +10,7 @@ This project explored the performance of a Retrieval-Augmented Generation (RAG) 
 
 | Category        | Best Performing Choice                 | Notes                                         |
 | --------------- | -------------------------------------- | --------------------------------------------- |
-| Embedding Model | `text-embedding-3-large`               | Improved semantic search accuracy             |
+| Embedding Model | `mxbai-embed-large`                    | Improved semantic search accuracy             |
 | Chunk Size      | ~500 tokens                            | Balanced context richness & relevance         |
 | Retrieval       | Top-k = 3                              | Avoids irrelevant context noise               |
 | Prompt Format   | ChatML structured system prompt        | Reduces hallucinations and improves grounding |
@@ -34,7 +34,7 @@ This project explored the performance of a Retrieval-Augmented Generation (RAG) 
 ```yaml
 chunk_size: 500
 chunk_overlap: 50
-embedding_model: text-embedding-3-large
+embedding_model: mxbai-embed-large
 vector_metric: cosine
 retriever: top_k
 k: 3
