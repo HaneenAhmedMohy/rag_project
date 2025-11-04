@@ -199,37 +199,28 @@ def main():
         print(f"Error preparing index: {e}")
         return
 
-    print("\n✅ RAG system is ready!")
-    print("Type your question below. Type 'exit' to quit.\n")
+    test_queries = [
+        "What is the difference between instruct models and chat models?",
+        "How does temperature affect model outputs?",
+        "What is the ChatML format?",
+    ]
 
-    while True:
-        try:
-            query = input("❓ Question: ").strip()
-        except EOFError:
-            break   # handles ctrl+D
-
-        if query.lower() in ("exit", "quit"):
-            print("👋 Goodbye!")
-            break
-
-        if not query:
-            print("⚠️ Please type a question.")
-            continue
-
+    for query in test_queries:
+        print("\n" + "=" * 60)
+        print(f"Query: {query}")
+        print("=" * 60)
         try:
             result = rag.query(query, k=3)
         except Exception as e:
-            print(f"❌ Error during RAG query: {e}")
+            print(f"Error during query: {e}")
             continue
 
-        print("\n📚 Top context chunks:")
+        print("\nRetrieved chunks:")
         for i, chunk in enumerate(result["retrieved_chunks"], 1):
-            print(f"\n[{i}] Score: {chunk['score']:.4f}")
+            print(f"\n[{i}] Similarity: {chunk['score']:.4f}")
             print(f"Text: {chunk['text'][:200]}...")
+        print(f"\nAnswer:\n{result['answer']}")
 
-        print("\n💡 Answer:")
-        print(result["answer"])
-        print("\n-----------------------------------------\n")
 
 if __name__ == "__main__":
     main()
